@@ -1,0 +1,144 @@
+.container-cart {
+  background: var(--gray-100);
+  width: 70%;
+  margin: 1rem auto;
+  border-radius: 10px;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+
+  section:nth-last-child(2) {
+    border-bottom: 3px solid var(--orange-800);
+  }
+
+  .prodcuts-filter {
+    border-bottom: 3px solid var(--orange-800);
+    padding-bottom: 0.5rem;
+
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      width: 30%;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    input {
+      width: 70%;
+      padding-left: 0.5rem;
+      border: none;
+
+      &:focus {
+        border-bottom: 1px solid var(--orange-500);
+      }
+    }
+  }
+
+  .product-in-cart {
+    display: flex;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--orange-500);
+
+    img {
+      width: 10%;
+    }
+
+    .product-info {
+      width: 70%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      .product-change-amount {
+        background: var(--orange-100);
+        width: 70px;
+        height: 1.5rem;
+        padding: 0.3rem;
+        border-radius: 5px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+          background: transparent;
+          border: none;
+        }
+      }
+    }
+  }
+
+  .product-final-value {
+    width: 20%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      font-size: 1.875rem;
+      font-weight: bold;
+    }
+  }
+
+  .products-value {
+    width: 100%;
+    padding-top: 1rem;
+
+    display: flex;
+    align-items: center;
+
+    .freight {
+      width: 15%;
+
+      display: flex;
+      gap: 1rem;
+
+      p {
+        font-size: 1.125rem;
+        font-weight: bold;
+      }
+    }
+
+    .products-balance {
+      width: 60%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+
+      p {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+
+    .products-buy {
+      width: 25%;
+
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        background: var(--orange-500);
+        width: 80%;
+        height: 3rem;
+        border: 1px solid var(--orange-500);
+        border-radius: 5px;
+
+        font-size: 1.25rem;
+        font-weight: bold;
+
+        transition: 0.2s;
+
+        &:hover {
+          filter: brightness(0.8);
+        }
+      }
+    }
+  }
+}
