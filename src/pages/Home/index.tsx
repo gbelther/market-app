@@ -7,7 +7,7 @@ export function Home() {
     <>
       <Header />
 
-      <div className="container">
+      <div className="container-home">
         <main className="container-main">
           <section className="inputs-wrapper">
             <input type="text" name="" placeholder="Filtrar produto..." />
