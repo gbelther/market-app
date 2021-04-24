@@ -1,8 +1,40 @@
+import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
+import { Product } from "../../components/Product";
+import { api } from "../../services/api";
 
 import "./styles.scss";
 
+interface IProduct {
+  id: number;
+  order_number: number;
+  price: number;
+  image: string;
+  description: string;
+  stock: number;
+  offer?: number;
+  promotion?: {
+    kind: string;
+    base: number;
+    value: number;
+  };
+}
+
 export function Home() {
+  const [products, setProducts] = useState<IProduct[]>([]);
+
+  useEffect(() => {
+    async function getProducts() {
+      const dataProducts = (await api.get("/")).data;
+
+      setProducts(dataProducts.items);
+    }
+
+    getProducts();
+  }, []);
+
+  console.log(products);
+
   return (
     <>
       <Header />
@@ -14,39 +46,8 @@ export function Home() {
           </section>
 
           <section className="products-wrapper">
-            <div className="product">
-              <img src="sale-tag.png" alt="Offer" id="offer-tag" />
-              <img src="pineapple.png" alt="pineapple" />
-              <div className="product-info">
-                <p>ABACAXI UNIDADE</p>
-                <div className="product-price">
-                  <p>R$3,99</p>
-                  <s>R$4,99</s>
-                </div>
-              </div>
-            </div>
-            <div className="product">
-              <img src="sale-tag.png" alt="Offer" id="offer-tag" />
-              <img src="pineapple.png" alt="pineapple" />
-              <div className="product-info">
-                <p>ABACAXI UNIDADE</p>
-                <div className="product-price">
-                  <p>R$3,99</p>
-                  <s>R$4,99</s>
-                </div>
-              </div>
-            </div>
-            <div className="product">
-              <img src="sale-tag.png" alt="Offer" id="offer-tag" />
-              <img src="pineapple.png" alt="pineapple" />
-              <div className="product-info">
-                <p>ABACAXI UNIDADE</p>
-                <div className="product-price">
-                  <p>R$3,99</p>
-                  <s>R$4,99</s>
-                </div>
-              </div>
-            </div>
+            {products.length > 0 &&
+              products.map((product) => <Product product={product} />)}
           </section>
         </main>
       </div>
