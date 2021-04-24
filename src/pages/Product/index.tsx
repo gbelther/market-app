@@ -4,7 +4,7 @@ import "./styles.scss";
 
 export function Product() {
   return (
-    <div>
+    <>
       <Header />
 
       <main className="container">
@@ -33,6 +33,6 @@ export function Product() {
           <button className="product-change-amount-button">+</button>
         </section>
       </main>
-    </div>
+    </>
   );
 }
