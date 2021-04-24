@@ -1,13 +1,16 @@
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./styles.scss";
 
 export function Header() {
   return (
     <header className="container-header">
-      <div className="logo">
-        <img src="Logo.png" alt="Market App" />
-        <p>Market App</p>
-      </div>
+      <Link to="/">
+        <div className="logo">
+          <img src="/Logo.png" alt="Market App" />
+          <p>Market App</p>
+        </div>
+      </Link>
       <div className="cart">
         <a>
           <FaShoppingCart size={30} />
