@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { formatPrice } from "../../util/format";
 import "./styles.scss";
 
@@ -27,7 +28,9 @@ export function Product({ product }: IProductProps) {
         <img src="sale-tag.png" alt="Offer" className="offer-tag" />
       )}
 
-      <img src={product.image} alt="pineapple" />
+      <Link to={`/product/${product.id}`}>
+        <img src={product.image} alt="pineapple" />
+      </Link>
       <div className="product-info">
         <p>{product.description}</p>
         <div className="product-price">

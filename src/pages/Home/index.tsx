@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Product } from "../../components/Product";
 import { api } from "../../services/api";
 
 import "./styles.scss";
+import { ProductsContext } from "../../contexts/ProductsContext";
 
 interface IProduct {
   id: number;
@@ -21,17 +22,7 @@ interface IProduct {
 }
 
 export function Home() {
-  const [products, setProducts] = useState<IProduct[]>([]);
-
-  useEffect(() => {
-    async function getProducts() {
-      const dataProducts = (await api.get("/")).data;
-
-      setProducts(dataProducts.items);
-    }
-
-    getProducts();
-  }, []);
+  const { products } = useContext(ProductsContext);
 
   console.log(products);
 
@@ -46,8 +37,13 @@ export function Home() {
           </section>
 
           <section className="products-wrapper">
-            {products.length > 0 &&
-              products.map((product) => <Product product={product} />)}
+            {products ? (
+              products.map((product) => (
+                <Product key={product.id} product={product} />
+              ))
+            ) : (
+              <h1>Carregando...</h1>
+            )}
           </section>
         </main>
       </div>
