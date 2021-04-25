@@ -26,8 +26,8 @@ export function Home() {
   const { products } = useContext(ProductsContext);
 
   useEffect(() => {
-    setFilteredProducts(products);
-  }, []);
+    products && setFilteredProducts(products);
+  }, [products]);
 
   function handleAddFilter(event: FormEvent<HTMLInputElement>) {
     const filtered = products.filter((product) =>
