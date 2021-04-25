@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Header } from "../../components/Header";
+import { ProductsContext } from "../../contexts/ProductsContext";
 import { useCart } from "../../hooks/useCart";
 import { formatPrice } from "../../util/format";
 import "./styles.scss";
@@ -20,6 +22,7 @@ interface IProduct {
 }
 
 export function Cart() {
+  const { deliveryTax } = useContext(ProductsContext);
   const { cart, decrementProduct, addProduct } = useCart();
 
   function handleAmountToCartChange(product: IProduct, type: string) {
@@ -30,6 +33,34 @@ export function Cart() {
     if (type === "+") {
       addProduct(product);
     }
+  }
+
+  function finalPriceOfProduct(product: IProduct) {
+    if (product.promotion) {
+      const price = product.offer
+        ? (product.amount -
+            Math.trunc(product.amount / product.promotion.value)) *
+          product.offer
+        : (product.amount -
+            Math.trunc(product.amount / product.promotion.value)) *
+          product.price;
+
+      return price;
+    }
+
+    if (product.offer) return product.amount * product.offer;
+
+    return product.amount * product.price;
+  }
+
+  function finalPriceOfAll() {
+    let finalPrice = cart.reduce((previous, curr) => {
+      return previous + finalPriceOfProduct(curr);
+    }, 0);
+
+    finalPrice += deliveryTax;
+
+    return finalPrice;
   }
 
   return (
@@ -67,7 +98,7 @@ export function Cart() {
                 </div>
               </div>
               <div className="product-final-value">
-                <p>{formatPrice(product.price)}</p>
+                <p>{formatPrice(finalPriceOfProduct(product))}</p>
               </div>
             </section>
           ))}
@@ -79,7 +110,7 @@ export function Cart() {
           </div>
           <div className="products-balance">
             <p>Total: </p>
-            <p>R$118,94</p>
+            <p>{formatPrice(finalPriceOfAll())}</p>
           </div>
           <div className="products-buy">
             <button>Finalizar Compra</button>
