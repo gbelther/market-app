@@ -1,7 +1,6 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Product } from "../../components/Product";
-import { api } from "../../services/api";
 
 import "./styles.scss";
 import { ProductsContext } from "../../contexts/ProductsContext";

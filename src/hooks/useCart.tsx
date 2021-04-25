@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { ProductsContext } from "../contexts/ProductsContext";
+import { useEffect, useState } from "react";
 
 interface IProduct {
   id: number;
@@ -35,14 +34,13 @@ interface ICart {
 export function useCart() {
   const [cart, setCart] = useState<ICart[]>(() => {
     const cartStorage = localStorage.getItem("MarketApp:cart");
-    console.log(cartStorage);
 
     if (cartStorage) return JSON.parse(cartStorage);
 
     return [];
   });
 
-  useEffect(() => {}, []);
+  useEffect(() => {});
 
   function productAmount(product: IProduct | ICart) {
     const productInCart = cart.find((prod) => prod.id === product.id);
