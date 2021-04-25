@@ -44,7 +44,7 @@ export function useCart() {
 
   useEffect(() => {}, []);
 
-  function productAmount(product: IProduct) {
+  function productAmount(product: IProduct | ICart) {
     const productInCart = cart.find((prod) => prod.id === product.id);
 
     return productInCart ? Number(productInCart.amount) : 0;
@@ -79,7 +79,7 @@ export function useCart() {
     }
   }
 
-  function decrementProduct(product: IProduct) {
+  function decrementProduct(product: IProduct | ICart) {
     const productInCart = cart.find((prod) => prod.id === product.id);
 
     if (productInCart) {
@@ -98,7 +98,7 @@ export function useCart() {
     }
   }
 
-  function deleteProduct(product: IProduct) {
+  function deleteProduct(product: IProduct | ICart) {
     const productInCart = cart.find((prod) => prod.id === product.id);
 
     if (productInCart) {
@@ -111,5 +111,5 @@ export function useCart() {
     }
   }
 
-  return { productAmount, addProduct, decrementProduct };
+  return { cart, productAmount, addProduct, decrementProduct };
 }
