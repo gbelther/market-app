@@ -1,25 +1,31 @@
-import { useContext } from "react";
-import { useParams } from "react-router";
+import { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { ProductsContext } from "../../contexts/ProductsContext";
+import { useCart } from "../../hooks/useCart";
 import { formatPrice } from "../../util/format";
 
 import "./styles.scss";
 
-interface IUseParamsProps {
-  id: string;
-}
-
-export function AboutProduct() {
+export function AboutProduct(): JSX.Element {
   const { products } = useContext(ProductsContext);
+  const { productAmount, addProduct, decrementProduct } = useCart();
 
-  const { id } = useParams<IUseParamsProps>();
+  const { id } = useParams<{ id: string }>();
 
   const product = products.find((product) => product.id === Number(id));
 
-  console.log(products);
-  console.log(id);
-  console.log(product);
+  function handleAmountToCartChange(type: string) {
+    if (product) {
+      if (type === "-") {
+        decrementProduct(product);
+      }
+
+      if (type === "+") {
+        addProduct(product);
+      }
+    }
+  }
 
   return (
     <>
@@ -55,11 +61,32 @@ export function AboutProduct() {
             )}
           </section>
           <section className="product-to-cart">
-            <button className="product-change-amount-button">-</button>
-            <button id="product-to-cart-add-button">
-              <p>Adicionar ao Carrinho</p> <p>|</p> <p>3</p>
+            <button
+              className="product-change-amount-button"
+              type="button"
+              value="-"
+              onClick={() => handleAmountToCartChange("-")}
+            >
+              -
             </button>
-            <button className="product-change-amount-button">+</button>
+            <div
+              className={
+                productAmount(product) > 0
+                  ? "product-amount-positive"
+                  : "product-amount-zero"
+              }
+            >
+              <p>Quantidade no carrinho</p> <p>|</p>{" "}
+              <p>{productAmount(product)}</p>
+            </div>
+            <button
+              className="product-change-amount-button"
+              type="button"
+              value="+"
+              onClick={() => handleAmountToCartChange("+")}
+            >
+              +
+            </button>
           </section>
         </main>
       ) : (

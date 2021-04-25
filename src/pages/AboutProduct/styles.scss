@@ -102,16 +102,26 @@
       border: none;
     }
 
-    #product-to-cart-add-button {
+    .product-amount-positive {
+      background: var(--green-200);
       border: none;
+      border-radius: 5px;
       padding: 0 1rem;
 
       display: flex;
+      align-items: center;
       gap: 1rem;
+    }
 
-      p:first-child {
-        // border-right: 1px solid var(--orange-800);
-      }
+    .product-amount-zero {
+      background: var(--red-200);
+      border: none;
+      border-radius: 5px;
+      padding: 0 1rem;
+
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
   }
 }
