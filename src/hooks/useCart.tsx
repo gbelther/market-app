@@ -54,13 +54,15 @@ export function useCart() {
     const productInCart = cart.find((prod) => prod.id === product.id);
 
     if (!productInCart) {
-      setCart([...cart, { ...product, amount: 1 }]);
-      localStorage.setItem(
-        "MarketApp:cart",
-        JSON.stringify([...cart, { ...product, amount: 1 }])
-      );
+      if (product.stock > 0) {
+        setCart([...cart, { ...product, amount: 1 }]);
+        localStorage.setItem(
+          "MarketApp:cart",
+          JSON.stringify([...cart, { ...product, amount: 1 }])
+        );
 
-      return;
+        return;
+      }
     }
 
     if (productInCart && product.stock > productInCart.amount) {
