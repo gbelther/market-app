@@ -1,13 +1,16 @@
 import { BrowserRouter } from "react-router-dom";
+import { ProductsDataContext } from "./contexts/ProductsContext";
 import { Routes } from "./routes";
 
 import "./styles/global.scss";
 
 export function App() {
   return (
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
+    <ProductsDataContext>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+    </ProductsDataContext>
   );
 }
 
