@@ -94,7 +94,7 @@ export function Cart() {
 
         {filteredProducts &&
           filteredProducts.map((product) => (
-            <section className="product-in-cart">
+            <section key={product.id} className="product-in-cart">
               <img src={product.image} alt="Pineapple" />
               <div className="product-info">
                 <p>{product.description}</p>
@@ -125,7 +125,7 @@ export function Cart() {
         <section className="products-value">
           <div className="freight">
             <p>Frete:</p>
-            <p>R$9,99</p>
+            <p>{formatPrice(deliveryTax)}</p>
           </div>
           <div className="products-balance">
             <p>Total: </p>

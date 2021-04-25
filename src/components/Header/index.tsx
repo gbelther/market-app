@@ -1,8 +1,11 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useCart } from "../../hooks/useCart";
 import "./styles.scss";
 
 export function Header() {
+  const { cart } = useCart();
+
   return (
     <header className="container-header">
       <Link to="/">
@@ -12,11 +15,11 @@ export function Header() {
         </div>
       </Link>
       <div className="cart">
-        <a>
+        <Link to="/cart">
           <FaShoppingCart size={30} />
           <p>Carrinho</p>
-        </a>
-        <p id="items-amount">10</p>
+        </Link>
+        <p id="items-amount">{cart.length}</p>
       </div>
     </header>
   );
