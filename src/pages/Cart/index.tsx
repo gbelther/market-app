@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { ProductsContext } from "../../contexts/ProductsContext";
 import { useCart } from "../../hooks/useCart";
@@ -22,8 +22,13 @@ interface IProduct {
 }
 
 export function Cart() {
+  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
   const { deliveryTax } = useContext(ProductsContext);
   const { cart, decrementProduct, addProduct } = useCart();
+
+  useEffect(() => {
+    setFilteredProducts(cart);
+  }, []);
 
   function handleAmountToCartChange(product: IProduct, type: string) {
     if (type === "-") {
@@ -63,6 +68,16 @@ export function Cart() {
     return finalPrice;
   }
 
+  function handleAddFilterProducts(event: FormEvent<HTMLInputElement>) {
+    const filtered = cart.filter((product) =>
+      product.description
+        .toLocaleLowerCase()
+        .includes((event.target as HTMLInputElement).value.toLocaleLowerCase())
+    );
+
+    setFilteredProducts(filtered);
+  }
+
   return (
     <>
       <Header />
@@ -70,11 +85,15 @@ export function Cart() {
       <main className="container-cart">
         <section className="prodcuts-filter">
           <p>Carrinho</p>
-          <input type="text" placeholder="Filtrar produto..." />
+          <input
+            type="text"
+            placeholder="Filtrar produto..."
+            onChange={handleAddFilterProducts}
+          />
         </section>
 
-        {cart &&
-          cart.map((product) => (
+        {filteredProducts &&
+          filteredProducts.map((product) => (
             <section className="product-in-cart">
               <img src={product.image} alt="Pineapple" />
               <div className="product-info">
