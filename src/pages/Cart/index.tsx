@@ -28,7 +28,7 @@ export function Cart() {
 
   useEffect(() => {
     setFilteredProducts(cart);
-  }, []);
+  }, [cart]);
 
   function handleAmountToCartChange(product: IProduct, type: string) {
     if (type === "-") {
