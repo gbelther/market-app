@@ -1,7 +1,37 @@
 import { Header } from "../../components/Header";
+import { useCart } from "../../hooks/useCart";
+import { formatPrice } from "../../util/format";
 import "./styles.scss";
 
+interface IProduct {
+  id: number;
+  order_number: number;
+  price: number;
+  image: string;
+  description: string;
+  stock: number;
+  offer?: number;
+  promotion?: {
+    kind: string;
+    base: number;
+    value: number;
+  };
+  amount: number;
+}
+
 export function Cart() {
+  const { cart, decrementProduct, addProduct } = useCart();
+
+  function handleAmountToCartChange(product: IProduct, type: string) {
+    if (type === "-") {
+      decrementProduct(product);
+    }
+
+    if (type === "+") {
+      addProduct(product);
+    }
+  }
+
   return (
     <>
       <Header />
@@ -12,35 +42,35 @@ export function Cart() {
           <input type="text" placeholder="Filtrar produto..." />
         </section>
 
-        <section className="product-in-cart">
-          <img src="pineapple.png" alt="Pineapple" />
-          <div className="product-info">
-            <p>ABACAXI UNITÁRIO</p>
-            <div className="product-change-amount">
-              <button type="button">-</button>
-              <p>3</p>
-              <button type="button">+</button>
-            </div>
-          </div>
-          <div className="product-final-value">
-            <p>R$3,99</p>
-          </div>
-        </section>
-
-        <section className="product-in-cart">
-          <img src="pineapple.png" alt="Pineapple" />
-          <div className="product-info">
-            <p>ABACAXI UNITÁRIO</p>
-            <div className="product-change-amount">
-              <button type="button">-</button>
-              <p>3</p>
-              <button type="button">+</button>
-            </div>
-          </div>
-          <div className="product-final-value">
-            <p>R$3,99</p>
-          </div>
-        </section>
+        {cart &&
+          cart.map((product) => (
+            <section className="product-in-cart">
+              <img src={product.image} alt="Pineapple" />
+              <div className="product-info">
+                <p>{product.description}</p>
+                <div className="product-change-amount">
+                  <button
+                    type="button"
+                    value="-"
+                    onClick={() => handleAmountToCartChange(product, "-")}
+                  >
+                    -
+                  </button>
+                  <p>{product.amount}</p>
+                  <button
+                    type="button"
+                    value="+"
+                    onClick={() => handleAmountToCartChange(product, "+")}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div className="product-final-value">
+                <p>{formatPrice(product.price)}</p>
+              </div>
+            </section>
+          ))}
 
         <section className="products-value">
           <div className="freight">
