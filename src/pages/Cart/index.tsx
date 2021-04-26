@@ -3,6 +3,8 @@ import { Header } from "../../components/Header";
 import { ProductsContext } from "../../contexts/ProductsContext";
 import { useCart } from "../../hooks/useCart";
 import { formatPrice } from "../../util/format";
+import { FiTrash2 } from "react-icons/fi";
+
 import "./styles.scss";
 
 interface IProduct {
@@ -24,7 +26,7 @@ interface IProduct {
 export function Cart() {
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
   const { deliveryTax } = useContext(ProductsContext);
-  const { cart, decrementProduct, addProduct } = useCart();
+  const { cart, decrementProduct, addProduct, deleteProduct } = useCart();
 
   useEffect(() => {
     setFilteredProducts(cart);
@@ -63,7 +65,7 @@ export function Cart() {
       return previous + finalPriceOfProduct(curr);
     }, 0);
 
-    finalPrice += deliveryTax;
+    filteredProducts.length > 0 && (finalPrice += deliveryTax);
 
     return finalPrice;
   }
@@ -76,6 +78,10 @@ export function Cart() {
     );
 
     setFilteredProducts(filtered);
+  }
+
+  function handleDeleteProductFromCart(product: IProduct) {
+    deleteProduct(product);
   }
 
   return (
@@ -115,6 +121,12 @@ export function Cart() {
                     +
                   </button>
                 </div>
+                <div className="product-delete">
+                  <FiTrash2
+                    size={20}
+                    onClick={() => handleDeleteProductFromCart(product)}
+                  />
+                </div>
               </div>
               <div className="product-final-value">
                 <p>{formatPrice(finalPriceOfProduct(product))}</p>
@@ -125,7 +137,7 @@ export function Cart() {
         <section className="products-value">
           <div className="freight">
             <p>Frete:</p>
-            <p>{formatPrice(deliveryTax)}</p>
+            <p>{filteredProducts.length > 0 && formatPrice(deliveryTax)}</p>
           </div>
           <div className="products-balance">
             <p>Total: </p>

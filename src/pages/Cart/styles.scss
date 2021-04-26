@@ -68,6 +68,15 @@
           border: none;
         }
       }
+
+      .product-delete {
+        width: 100%;
+
+        cursor: pointer;
+
+        display: flex;
+        justify-content: flex-start;
+      }
     }
   }
 

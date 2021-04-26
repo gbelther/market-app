@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface IProduct {
   id: number;
@@ -40,8 +40,6 @@ export function useCart() {
     return [];
   });
 
-  useEffect(() => {});
-
   function productAmount(product: IProduct | ICart) {
     const productInCart = cart.find((prod) => prod.id === product.id);
 
@@ -69,6 +67,7 @@ export function useCart() {
       );
 
       setCart(updatedCart);
+      console.log(updatedCart);
 
       localStorage.setItem("MarketApp:cart", JSON.stringify(updatedCart));
       return;
@@ -87,6 +86,7 @@ export function useCart() {
         );
 
         setCart(updatedCart);
+        console.log(updatedCart);
 
         localStorage.setItem("MarketApp:cart", JSON.stringify(updatedCart));
         return;
@@ -109,5 +109,5 @@ export function useCart() {
     }
   }
 
-  return { cart, productAmount, addProduct, decrementProduct };
+  return { cart, productAmount, addProduct, decrementProduct, deleteProduct };
 }
