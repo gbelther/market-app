@@ -132,6 +132,12 @@ export function Cart() {
               </div>
               <div className="product-final-value">
                 <p>{formatPrice(finalPriceOfProduct(product))}</p>
+                {product.promotion &&
+                  (product.amount + 1) % product.promotion.value === 0 && (
+                    <span>
+                      Adicione mais uma unidade e pague esse mesmo valor
+                    </span>
+                  )}
               </div>
             </section>
           ))}
