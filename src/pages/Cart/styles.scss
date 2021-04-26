@@ -1,9 +1,10 @@
 .container-cart {
   background: var(--gray-100);
-  width: 70%;
+  width: 90%;
+  max-width: 1000px;
   margin: 1rem auto;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 0.5rem;
 
   display: flex;
   flex-direction: column;
@@ -42,15 +43,26 @@
     border-bottom: 1px solid var(--orange-500);
 
     img {
-      width: 10%;
+      width: 60px;
+      margin: 0 2rem 0 0;
     }
 
     .product-info {
       width: 70%;
+      height: auto;
 
       display: flex;
-      flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+
+      .product-info-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
 
       .product-change-amount {
         background: var(--orange-100);
@@ -77,69 +89,75 @@
         display: flex;
         justify-content: flex-start;
       }
+
+      > p {
+        font-size: 0.875rem;
+      }
     }
   }
 
   .product-final-value {
     width: 20%;
+    margin-left: 0.5rem;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     p {
-      font-size: 1.875rem;
+      font-size: 1.25rem;
       font-weight: bold;
     }
   }
 
   .products-value {
-    width: 100%;
     padding-top: 1rem;
 
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    gap: 0.5rem;
 
     .freight {
-      width: 15%;
+      min-width: 100px;
 
       display: flex;
-      gap: 1rem;
+      align-items: center;
+      gap: 0.2rem;
 
-      p {
+      p:first-child {
         font-size: 1.125rem;
         font-weight: bold;
       }
     }
 
     .products-balance {
-      width: 60%;
+      min-width: 100px;
 
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 2rem;
+      gap: 1rem;
 
       p {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         font-weight: bold;
       }
     }
 
     .products-buy {
-      width: 25%;
+      min-width: 100px;
 
       display: flex;
       justify-content: flex-end;
 
       button {
         background: var(--orange-500);
-        width: 80%;
-        height: 3rem;
+        min-height: 3rem;
         border: 1px solid var(--orange-500);
         border-radius: 5px;
 
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-weight: bold;
 
         transition: 0.2s;

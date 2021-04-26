@@ -103,30 +103,32 @@ export function Cart() {
             <section key={product.id} className="product-in-cart">
               <img src={product.image} alt="Pineapple" />
               <div className="product-info">
+                <div className="product-info-wrap">
+                  <div className="product-change-amount">
+                    <button
+                      type="button"
+                      value="-"
+                      onClick={() => handleAmountToCartChange(product, "-")}
+                    >
+                      -
+                    </button>
+                    <p>{product.amount}</p>
+                    <button
+                      type="button"
+                      value="+"
+                      onClick={() => handleAmountToCartChange(product, "+")}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div className="product-delete">
+                    <FiTrash2
+                      size={20}
+                      onClick={() => handleDeleteProductFromCart(product)}
+                    />
+                  </div>
+                </div>
                 <p>{product.description}</p>
-                <div className="product-change-amount">
-                  <button
-                    type="button"
-                    value="-"
-                    onClick={() => handleAmountToCartChange(product, "-")}
-                  >
-                    -
-                  </button>
-                  <p>{product.amount}</p>
-                  <button
-                    type="button"
-                    value="+"
-                    onClick={() => handleAmountToCartChange(product, "+")}
-                  >
-                    +
-                  </button>
-                </div>
-                <div className="product-delete">
-                  <FiTrash2
-                    size={20}
-                    onClick={() => handleDeleteProductFromCart(product)}
-                  />
-                </div>
               </div>
               <div className="product-final-value">
                 <p>{formatPrice(finalPriceOfProduct(product))}</p>
