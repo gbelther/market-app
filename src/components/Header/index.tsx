@@ -11,7 +11,7 @@ export function Header() {
     <header className="container-header">
       <Link to="/">
         <div className="logo">
-          <img src="/Logo.png" alt="Market App" />
+          <img src="/logo.png" alt="Market App" />
           <p>Market App</p>
         </div>
       </Link>
