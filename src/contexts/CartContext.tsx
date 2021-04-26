@@ -30,14 +30,6 @@ export const CartDataContext = ({
     return [];
   });
 
-  const [updatedCart, setUpdatedCart] = useState<IProductInCart[]>([]);
-
-  useEffect(() => {
-    if (updatedCart.length > 0) {
-      setCart(updatedCart);
-    }
-  }, [updatedCart]);
-
   function productAmount(product: IProduct | IProductInCart) {
     const productInCart = cart.find((prod) => prod.id === product.id);
 
@@ -49,7 +41,7 @@ export const CartDataContext = ({
 
     if (!productInCart) {
       if (product.stock > 0) {
-        setUpdatedCart([...cart, { ...product, amount: 1 }]);
+        setCart([...cart, { ...product, amount: 1 }]);
 
         localStorage.setItem(
           "MarketApp:cart",
@@ -66,7 +58,7 @@ export const CartDataContext = ({
         p.id === product.id ? { ...p, amount: Number(p.amount) + 1 } : p
       );
 
-      setUpdatedCart([...updatedCart]);
+      setCart([...updatedCart]);
 
       localStorage.setItem("MarketApp:cart", JSON.stringify(updatedCart));
 
@@ -87,7 +79,7 @@ export const CartDataContext = ({
           p.id === product.id ? { ...p, amount: Number(p.amount) - 1 } : p
         );
 
-        setUpdatedCart([...updatedCart]);
+        setCart([...updatedCart]);
 
         localStorage.setItem("MarketApp:cart", JSON.stringify(updatedCart));
 
@@ -95,24 +87,19 @@ export const CartDataContext = ({
         return;
       } else {
         deleteProduct(product);
-        toast.warn("Produto removido do carrinho");
       }
     }
   }
 
   function deleteProduct(product: IProduct | IProductInCart) {
-    const productInCart = cart.find((prod) => prod.id === product.id);
+    const updatedCart = cart.filter((p) => p.id !== product.id);
 
-    if (productInCart) {
-      const updatedCart = cart.filter((p) => p.id !== productInCart.id);
+    setCart(updatedCart);
 
-      setUpdatedCart([...updatedCart]);
+    localStorage.setItem("MarketApp:cart", JSON.stringify(updatedCart));
 
-      localStorage.setItem("MarketApp:cart", JSON.stringify(updatedCart));
-
-      toast.warn("Produto removido do carrinho");
-      return;
-    }
+    toast.warn("Produto removido do carrinho");
+    return;
   }
 
   return (
