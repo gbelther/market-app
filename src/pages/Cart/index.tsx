@@ -111,14 +111,14 @@ export function Cart() {
                       +
                     </button>
                   </div>
-                  <div className="product-delete">
-                    <FiTrash2
-                      size={20}
-                      onClick={() => handleDeleteProductFromCart(product)}
-                    />
-                  </div>
                 </div>
                 <p>{product.description}</p>
+              </div>
+              <div className="product-delete">
+                <FiTrash2
+                  size={20}
+                  onClick={() => handleDeleteProductFromCart(product)}
+                />
               </div>
               <div className="product-final-value">
                 <p>{formatPrice(finalPriceOfProduct(product))}</p>
