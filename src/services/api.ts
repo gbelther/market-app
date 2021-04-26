@@ -1,5 +1,8 @@
 import axios from "axios";
+// require("dotenv").config();
+
+// import { config } from "dotenv";
 
 export const api = axios.create({
-  baseURL: "https://run.mocky.io/v3/c7c87764-f0ae-4723-906d-39d16728525a",
+  baseURL: process.env.REACT_APP_API_URL,
 });
