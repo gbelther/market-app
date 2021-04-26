@@ -44,7 +44,8 @@
 
     img {
       width: 60px;
-      margin: 0 2rem 0 0;
+      height: 60px;
+      padding: 0 0.5rem;
     }
 
     .product-info {
@@ -54,7 +55,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
+      gap: 0.5rem;
 
       .product-info-wrap {
         display: flex;
@@ -66,10 +67,10 @@
 
       .product-change-amount {
         background: var(--orange-100);
-        width: 70px;
-        height: 1.5rem;
+        width: 50px;
+        height: 1.2rem;
         padding: 0.3rem;
-        border-radius: 5px;
+        border-radius: 2px;
 
         display: flex;
         justify-content: space-between;
@@ -106,7 +107,7 @@
     align-items: center;
 
     p {
-      font-size: 1.25rem;
+      font-size: 1rem;
       font-weight: bold;
     }
 
@@ -120,12 +121,13 @@
   }
 
   .products-value {
+    width: 100%;
     padding-top: 1rem;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.2rem;
 
     .freight {
       min-width: 100px;
@@ -135,7 +137,6 @@
       gap: 0.2rem;
 
       p:first-child {
-        font-size: 1.125rem;
         font-weight: bold;
       }
     }
@@ -146,16 +147,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.2rem;
 
-      p {
-        font-size: 1.25rem;
+      p:first-child {
         font-weight: bold;
       }
     }
 
     .products-buy {
-      min-width: 100px;
+      min-width: 80px;
 
       display: flex;
       justify-content: flex-end;
@@ -164,9 +164,9 @@
         background: var(--orange-500);
         min-height: 3rem;
         border: 1px solid var(--orange-500);
-        border-radius: 5px;
+        border-radius: 3px;
 
-        font-size: 1rem;
+        font-size: 0.8rem;
         font-weight: bold;
 
         transition: 0.2s;

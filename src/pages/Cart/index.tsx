@@ -142,7 +142,7 @@ export function Cart() {
             <p>{formatPrice(finalPriceOfAll())}</p>
           </div>
           <div className="products-buy">
-            <button>Finalizar Compra</button>
+            <button>Finalizar</button>
           </div>
         </section>
       </main>

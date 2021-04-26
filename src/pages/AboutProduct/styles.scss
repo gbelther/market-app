@@ -3,7 +3,7 @@
   width: 30%;
   min-width: 310px;
   height: auto;
-  margin: 1rem auto;
+  margin: 2rem auto;
   padding-bottom: 0.5rem;
   border-radius: 10px;
 
@@ -24,8 +24,9 @@
   }
 
   img {
-    width: 350px;
-    height: 350px;
+    width: 90%;
+    max-width: 350px;
+    height: auto;
     padding: 1rem;
   }
 
@@ -99,7 +100,7 @@
     }
 
     .product-change-amount-button {
-      width: 25px;
+      width: 45px;
       border: none;
     }
 
@@ -108,11 +109,13 @@
       border: none;
       border-radius: 5px;
       padding: 0 1rem;
+      max-width: 180px;
       height: auto;
+      min-height: 2rem;
 
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 2rem;
     }
 
     .product-amount-zero {
@@ -120,10 +123,14 @@
       border: none;
       border-radius: 5px;
       padding: 0 1rem;
+      max-width: 180px;
+      height: auto;
+      min-height: 2rem;
 
       display: flex;
       align-items: center;
-      gap: 1rem;
+      justify-content: center;
+      gap: 2rem;
 
       p {
         text-align: center;
