@@ -1,10 +1,11 @@
+import { useContext } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useCart } from "../../hooks/useCart";
+import { CartContext } from "../../contexts/CartContext";
 import "./styles.scss";
 
 export function Header() {
-  const { cart } = useCart();
+  const { cart } = useContext(CartContext);
 
   return (
     <header className="container-header">

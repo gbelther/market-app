@@ -1,11 +1,11 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { ProductsContext } from "../../contexts/ProductsContext";
-import { useCart } from "../../hooks/useCart";
 import { formatPrice } from "../../util/format";
 import { FiTrash2 } from "react-icons/fi";
 
 import "./styles.scss";
+import { CartContext } from "../../contexts/CartContext";
 
 interface IProduct {
   id: number;
@@ -26,7 +26,9 @@ interface IProduct {
 export function Cart() {
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
   const { deliveryTax } = useContext(ProductsContext);
-  const { cart, decrementProduct, addProduct, deleteProduct } = useCart();
+  const { cart, addProduct, decrementProduct, deleteProduct } = useContext(
+    CartContext
+  );
 
   useEffect(() => {
     setFilteredProducts(cart);

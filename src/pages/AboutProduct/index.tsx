@@ -1,15 +1,17 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Header } from "../../components/Header";
+import { CartContext } from "../../contexts/CartContext";
 import { ProductsContext } from "../../contexts/ProductsContext";
-import { useCart } from "../../hooks/useCart";
 import { formatPrice } from "../../util/format";
 
 import "./styles.scss";
 
 export function AboutProduct(): JSX.Element {
   const { products } = useContext(ProductsContext);
-  const { productAmount, addProduct, decrementProduct } = useCart();
+  const { productAmount, addProduct, decrementProduct } = useContext(
+    CartContext
+  );
 
   const { id } = useParams<{ id: string }>();
 
