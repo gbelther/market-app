@@ -2,23 +2,10 @@ import { FormEvent, useContext, useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Product } from "../../components/Product";
 
+import { IProduct } from "../../types";
+
 import "./styles.scss";
 import { ProductsContext } from "../../contexts/ProductsContext";
-
-interface IProduct {
-  id: number;
-  order_number: number;
-  price: number;
-  image: string;
-  description: string;
-  stock: number;
-  offer?: number;
-  promotion?: {
-    kind: string;
-    base: number;
-    value: number;
-  };
-}
 
 export function Home() {
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);

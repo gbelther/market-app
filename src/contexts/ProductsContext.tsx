@@ -1,20 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { api } from "../services/api";
 
-interface IProduct {
-  id: number;
-  order_number: number;
-  price: number;
-  image: string;
-  description: string;
-  stock: number;
-  offer?: number;
-  promotion?: {
-    kind: string;
-    base: number;
-    value: number;
-  };
-}
+import { IProduct } from "../types";
 
 interface IProductsDataContextProps {
   children: ReactNode;

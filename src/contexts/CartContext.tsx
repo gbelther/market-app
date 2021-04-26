@@ -1,43 +1,14 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-interface IProductInCart {
-  id: number;
-  order_number: number;
-  price: number;
-  image: string;
-  description: string;
-  stock: number;
-  offer?: number;
-  promotion?: {
-    kind: string;
-    base: number;
-    value: number;
-  };
-}
-
-interface IProduct {
-  id: number;
-  order_number: number;
-  price: number;
-  image: string;
-  description: string;
-  stock: number;
-  offer?: number;
-  promotion?: {
-    kind: string;
-    base: number;
-    value: number;
-  };
-  amount: number;
-}
+import { IProduct, IProductInCart } from "../types";
 
 interface ICartContextData {
-  cart: IProduct[];
-  productAmount: (product: IProductInCart) => number;
-  addProduct: (product: IProductInCart) => void;
-  decrementProduct: (product: IProductInCart) => void;
-  deleteProduct: (product: IProductInCart) => void;
+  cart: IProductInCart[];
+  productAmount: (product: IProduct | IProductInCart) => number;
+  addProduct: (product: IProduct | IProductInCart) => void;
+  decrementProduct: (product: IProduct | IProductInCart) => void;
+  deleteProduct: (product: IProduct | IProductInCart) => void;
 }
 
 interface ICartDataContextProps {
@@ -51,7 +22,7 @@ export const CartContext = createContext<ICartContextData>(
 export const CartDataContext = ({
   children,
 }: ICartDataContextProps): JSX.Element => {
-  const [cart, setCart] = useState<IProduct[]>(() => {
+  const [cart, setCart] = useState<IProductInCart[]>(() => {
     const cartStorage = localStorage.getItem("MarketApp:cart");
 
     if (cartStorage) return JSON.parse(cartStorage);
@@ -59,7 +30,7 @@ export const CartDataContext = ({
     return [];
   });
 
-  const [updatedCart, setUpdatedCart] = useState<IProduct[]>([]);
+  const [updatedCart, setUpdatedCart] = useState<IProductInCart[]>([]);
 
   useEffect(() => {
     if (updatedCart.length > 0) {
@@ -73,7 +44,7 @@ export const CartDataContext = ({
     return productInCart ? Number(productInCart.amount) : 0;
   }
 
-  function addProduct(product: IProductInCart) {
+  function addProduct(product: IProduct | IProductInCart) {
     const productInCart = cart.find((prod) => prod.id === product.id);
 
     if (!productInCart) {

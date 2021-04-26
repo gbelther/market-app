@@ -2,20 +2,7 @@ import { Link } from "react-router-dom";
 import { formatPrice } from "../../util/format";
 import "./styles.scss";
 
-interface IProduct {
-  id: number;
-  order_number: number;
-  price: number;
-  image: string;
-  description: string;
-  stock: number;
-  offer?: number;
-  promotion?: {
-    kind: string;
-    base: number;
-    value: number;
-  };
-}
+import { IProduct } from "../../types";
 
 interface IProductProps {
   product: IProduct;

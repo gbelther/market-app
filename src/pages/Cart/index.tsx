@@ -4,27 +4,15 @@ import { ProductsContext } from "../../contexts/ProductsContext";
 import { formatPrice } from "../../util/format";
 import { FiTrash2 } from "react-icons/fi";
 
+import { IProductInCart } from "../../types";
+
 import "./styles.scss";
 import { CartContext } from "../../contexts/CartContext";
 
-interface IProduct {
-  id: number;
-  order_number: number;
-  price: number;
-  image: string;
-  description: string;
-  stock: number;
-  offer?: number;
-  promotion?: {
-    kind: string;
-    base: number;
-    value: number;
-  };
-  amount: number;
-}
-
 export function Cart() {
-  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<IProductInCart[]>(
+    []
+  );
   const { deliveryTax } = useContext(ProductsContext);
   const { cart, addProduct, decrementProduct, deleteProduct } = useContext(
     CartContext
@@ -34,7 +22,7 @@ export function Cart() {
     setFilteredProducts(cart);
   }, [cart]);
 
-  function handleAmountToCartChange(product: IProduct, type: string) {
+  function handleAmountToCartChange(product: IProductInCart, type: string) {
     if (type === "-") {
       decrementProduct(product);
     }
@@ -44,7 +32,7 @@ export function Cart() {
     }
   }
 
-  function finalPriceOfProduct(product: IProduct) {
+  function finalPriceOfProduct(product: IProductInCart) {
     if (product.promotion) {
       const price = product.offer
         ? (product.amount -
@@ -82,7 +70,7 @@ export function Cart() {
     setFilteredProducts(filtered);
   }
 
-  function handleDeleteProductFromCart(product: IProduct) {
+  function handleDeleteProductFromCart(product: IProductInCart) {
     deleteProduct(product);
   }
 
