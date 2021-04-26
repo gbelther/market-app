@@ -1,5 +1,4 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
-import { Header } from "../../components/Header";
 import { Product } from "../../components/Product";
 
 import { IProduct } from "../../types";
@@ -27,8 +26,6 @@ export function Home() {
 
   return (
     <>
-      <Header />
-
       <div className="container-home">
         <main className="container-main">
           <section className="inputs-wrapper">

@@ -1,5 +1,4 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
-import { Header } from "../../components/Header";
 import { ProductsContext } from "../../contexts/ProductsContext";
 import { formatPrice } from "../../util/format";
 import { FiTrash2 } from "react-icons/fi";
@@ -76,8 +75,6 @@ export function Cart() {
 
   return (
     <>
-      <Header />
-
       <main className="container-cart">
         <section className="prodcuts-filter">
           <p>Carrinho</p>
