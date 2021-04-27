@@ -15,15 +15,17 @@ export function Product({ product }: IProductProps) {
         <img src="sale-tag.png" alt="Offer" className="offer-tag" />
       )}
 
-      <Link to={`/product/${product.id}`}>
-        <img src={product.image} alt="pineapple" />
-      </Link>
+      {/* <Link to={`/product/${product.id}`}> */}
+      <img src={product.image} alt="pineapple" />
+      {/* </Link> */}
       <div className="product-info">
         <p>{product.description}</p>
         <div className="product-price">
           {product.offer ? (
             <>
-              <p>{formatPrice(product.offer)}</p>
+              <p style={{ color: "var(--orange-500)" }}>
+                {formatPrice(product.offer)}
+              </p>
               <s>{formatPrice(product.price)}</s>
             </>
           ) : (

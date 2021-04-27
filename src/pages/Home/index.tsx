@@ -1,10 +1,11 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Product } from "../../components/Product";
+import { ProductsContext } from "../../contexts/ProductsContext";
 
 import { IProduct } from "../../types";
 
 import "./styles.scss";
-import { ProductsContext } from "../../contexts/ProductsContext";
 
 export function Home() {
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
@@ -39,7 +40,9 @@ export function Home() {
           <section className="products-wrapper">
             {filteredProducts ? (
               filteredProducts.map((product) => (
-                <Product key={product.id} product={product} />
+                <Link to={`/product/${product.id}`}>
+                  <Product key={product.id} product={product} />
+                </Link>
               ))
             ) : (
               <h1>Carregando...</h1>
