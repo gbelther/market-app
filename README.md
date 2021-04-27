@@ -6,6 +6,8 @@ também é possível adicionar ou remover o produto no carrinho. Por fim, tem-se
 header. Nele mostra as informações do produtos adicionados, inclusive com as ofertas e promoções aplicadas. Nessa tela também é possível alterar a quantidade de determinado
 produto e removê-lo.
 
+Os produtos que são adicionados no carrinho são armazenados no <strong>localStorage</strong> do usuário.
+
 <h2>Tecnologias Utilidades</h2>
 - HTML </br>
 - SCSS </br>
