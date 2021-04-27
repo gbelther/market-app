@@ -47,3 +47,8 @@ Para que seja possível carregar os itens do mercado, é necessário uma API. Es
   ]
 }
 ```
+A url desta API deve estar como variável ambiente no arquivo .env com a variável de nome REACT_APP_API_URL.
+
+<h2>Imagens do Projeto</h2>
+
+![image](https://user-images.githubusercontent.com/68357487/116165856-22609f80-a6d3-11eb-9cee-0796e1bc64ba.png)
