@@ -1,6 +1,6 @@
 <h2>MARKET APP</h2>
 
-<strong>Importante:</strong> existe outra branch chamada <strong>version-redux</strong> em que não é utilizado ContextAPI para o compartilhamento de informações entre componentes, e sim o Redux e Redux-Saga.
+<strong>Importante:</strong> existe outro projeto no meu repositório chamado <strong>MARKET-APP-REDUX-VERSION</strong> que utiliza Redux e Redux-Saga para o compartilhamento de estado.
 
 Este projeto é um app que simula parte dos sites de compras dos mercados. Nele, busca-se os produtos através de um API e rendezida-os na primeira tela ('/'). Ao clicar
 sobre a imagem do produto, chega-se na tela desse produto em específico ('/product/id') onde é mostrado mais informações sobre a venda, como promoções. Nessa tela,
